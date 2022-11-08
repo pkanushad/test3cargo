@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <style>
+         .tbl-container{
+        max-width:fit-content;
+        max-height:fit-content;
+        }
+
+         .tbl-fixed{
+        overflow-x:scroll;
+        overflow-y:scroll;
+        height:fit-content;
+        max-height:70vh;
+        max-width:150vh;
+        margin-top:10px;
+
+        }
+          table{
+        min-width:max-content;
+        border-collapse:separate;
+
+        }
+             table th{
+        position: sticky;
+        top: 0px;
+        background:#4e73df;
+<!--        background:#0083c2;  nice blue color-->
+        text-align: center;
+        color: white;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        }
+
+         table td{
+<!--        background: #fff;-->
+        text-align: center;
+        border: 1px solid #ccc;
+        }
+
+
+<!--tr:nth-child(even) {-->
+<!--  background-color: rgba(150, 212, 212, 0.4);-->
+<!--}-->
+
+<!--th:nth-child(even),td:nth-child(even) {-->
+<!--  background-color: rgba(150, 212, 212, 0.4);-->
+
+tr:hover {background-color: #D1D119;}
+
+<!--$table-hover-bg: #d00; // what's that you need-->
+<!--$table-striped-bg: #fff;-->
+}
+
+.tbl-fixed thead th { position: sticky; top: 0; z-index: 1; }
+
+
+    </style>
+</head>
+
+<body>
+
+<!--<div class="card-body">-->
+<!--    <h4 class="box-title">Trades List </h4>-->
+<!--    <div>-->
+<!--        <div class="row m-2">-->
+<!--            <div>-->
+<!--                <a href="{%url 'pb-add' %}" class="btn btn-info btn-sm"-->
+<!--                   role="button">ADD TRADES</a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+<div class="card card-body">
+
+
+    <div class="d-grid gap-2 d-md-block">
+        <div class="row">
+        <!--  <button class="btn btn-primary" type="button"><i class="fa fa-plus"></i> Add Trade</button>-->
+        <!--  <button class="btn btn-primary" type="button">Button</button>-->
+
+        <a href="{%url 'pb-add' %}" class="btn btn-primary btn-sm m-2"
+           role="button"><i class="fa fa-plus"></i> ADD TRADES</a>
+
+        <a href="{%url 'export' %}" class="btn btn-primary btn-sm m-2"
+           role="button"><i class='fas fa-file-export'></i> EXPORT</a>
+
+
+        <div class="d-grid gap-2 d-md-block">
+
+<!--                     <form action="" method="get">-->
+            <!-- Search form -->
+            <div class="input-group">
+
+<!--                <input type="search" class="form-control rounded m-2" placeholder="Search" aria-label="Search" name="q"-->
+<!--                       aria-describedby="search-addon"/>-->
+<!--                <button type="button" class="btn btn-outline-primary m-2">search</button>-->
+                <form class="form-inline my-2 my-lg-0" method="get">
+<!--                     {% csrf_token %}-->
+                    <input class="form-control mr-sm-2 m-2" name="q" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0 m-2" type="submit">Search</button>
+                </form>
+
+            </div>
+<!--                     </form>-->
+
+        </div>
+    </div>
+
+
+
+
+    <!--           <p> Search by filter</p>-->
+    <!--                <form action="" method="get">-->
+    <!--                    {% csrf_token %}-->
+
+    <!--                    {{myFilter.form}}-->
+
+    <!--                    <input type="submit" value="Search" class="btn btn-primary">-->
+    <!--                </form>-->
+    </div>
+</div>
+
+<div class=" tbl-container">
+<div class="row tbl-fixed">
+    <div class="col-12">
+<!--        <div class="card">-->
+
+<!--            <div class="card-body--">-->
+<!--                <div class="table-stats order-table ov-h">-->
+
+<!--                   <h4>TRADES</h4>-->
+<!--        <caption>Trades List</caption>-->
+<!--        <div>-->
+<!--            <a href="{%url 'pb-add' %}" class="btn btn-info btn-sm"-->
+<!--               role="button">ADD TRADES</a>-->
+<!--        </div>-->
+                    <table class="table  table-primary table-hover bg-white able-condensed table-sm text-xsmall table-responsive w-auto" style="width: auto;" >
+
+                        <thead>
+                            <tr>
+<!--                                <th class="serial">No</th>-->
+
+                                <th>ID</th>
+                                 <th>Actions</th>
+                                <th>Date</th>
+                                <th>Trader</th>
+                                <th>Counter Party</th>
+                                <th>Book</th>
+                                <th>Strategy</th>
+                                 <th>Derivative</th>
+                                 <th>Product</th>
+                                 <th>Pricing Contract</th>
+                                 <th>Unit</th>
+                                 <th>kbbl</th>
+                                 <th>kMT</th>
+                                <th> m<sup>3</sup></th>
+                                 <th>Nominated Quantity</th>
+                                 <th>Density</th>
+                                 <th>Pricing Method</th>
+                                 <th>Premium Discount</th>
+                                 <th>BL Date</th>
+                                 <th>Pricing Term</th>
+                                 <th>Start Date</th>
+                                 <th>End Date</th>
+                                <th>Holidays</th>
+                                <th>Delivery Mode</th>
+                                <th>Port</th>
+                                <th>Terminal</th>
+                                <th>Vessal Name</th>
+                                <th>Tank No:</th>
+                                <th>External Terminal</th>
+                                <th>Terminal_cost</th>
+                                <th>Fright_cost</th>
+                                <th>Additional Secondary Charge</th>
+<!--                                <th>Heading Text</th>-->
+                                <th>Total No Days</th>
+                                <th>price_days</th>
+                                <th>unprice_days</th>
+                                <th>total_volume</th>
+                                <th>price_volume</th>
+                                <th>unprice_volume</th>
+                                <th>position</th>
+                                <th>priced_price</th>
+                                <th>unpriced_price</th>
+                                <th>Shore_recieved</th>
+                                <th>Difference</th>
+                                <th>Status</th>
+<!--                                <th>Reference No</th>-->
+
+                                <th>Notes</th>
+<!--                                <th>Actions</th>-->
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if physicalblotter %}
+                            {% for pb in physicalblotter %}
+                            <tr>
+<!--                                <td class="serial">{{ forloop.counter }}</td>-->
+                                <td>{{pb.ID}}</td>
+
+                                    <td>
+                                    <a href="{%url 'pb-details' pb.ID%}" class="btn btn-outline-info btn-sm"
+                                       role="button"><i class='far fa-file'></i></a>
+                                    <a href="{%url 'pb-edit' pb.ID%}" class="btn btn-outline-warning btn-sm"
+                                       role="button"><i class='far fa-edit'></i></a>
+                                    <!--                                    <a href="{%url 'pb-remove' pb.Strategy%}" style="color: red">Delete</a>-->
+                                    <a href="{%url 'pb-remove' pb.ID%}" class="btn btn-outline-danger btn-sm "
+                                       role="button"><i class="fa fa-trash"></i></a>
+
+                                </td>
+
+                                <td>{{ pb.Date }}</td>
+                                <td>{{ pb.Trader }}</td>
+                                 <td>{{ pb.Counter_Party }}</td>
+                                <td>{{ pb.Book }}</td>
+                                 <td>{{ pb.Strategy }}</td>
+                                <td>{{ pb.Derivative }}</td>
+                                 <td>{{ pb.Product }}</td>
+                                <td>{{ pb.Pricing_Contract }}</td>
+                                 <td>{{ pb.unit }}</td>
+                                <td>{{ pb.kbbl }}</td>
+                                 <td>{{ pb.kMT }}</td>
+                                <td>{{pb.m3}}</td>
+                                <td>{{ pb.Nominated_quantity }}</td>
+                                 <td>{{ pb.Density }}</td>
+                                <td>{{ pb.Pricing_method }}</td>
+                                 <td>{{ pb.Premium_discount }}</td>
+                                <td>{{ pb.BL_Date }}</td>
+                                <td>{{ pb.Pricing_term }}</td>
+                                <td>{{ pb.start_date }}</td>
+                                 <td>{{ pb.end_date }}</td>
+                                <td>{{ pb.holidays }}</td>
+                                <td>{{ pb.Delivery_mode }}</td>
+                                <td>{{ pb.port }}</td>
+                                <td>{{ pb.Terminal }}</td>
+                                <td>{{ pb.Vessal_name }}</td>
+                                <td>{{ pb.Tank_no }}</td>
+                                <td>{{ pb.External_Terminal }}</td>
+                                <td>{{ pb.Terminal_cost }}</td>
+                                <td>{{pb.Fright_cost}}</td>
+                                <td>{{pb.additional_secondary_charge}}</td>
+<!--                                <td>{{pb.Heading_text}}</td>-->
+                                <td>{{pb.Total_no_days}}</td>
+                                <td>{{pb.price_days}}</td>
+                                <td>{{pb.unprice_days}}</td>
+                                <td>{{pb.total_volume}}</td>
+                                <td>{{pb.price_volume}}</td>
+                                <td>{{pb.unprice_volume}}</td>
+                                <td>{{pb.position}}</td>
+                                <td>{{pb.priced_price}}</td>
+                                <td>{{pb.unpriced_price}}</td>
+
+                                <td>{{pb.Shore_recieved}}</td>
+                                <td>{{pb.Difference}}</td>
+                                <td>{{pb.Status}}</td>
+<!--                                <td>{{pb.Reference_no}}</td>-->
+                                 <td>{{ pb.Notes }}</td>
+
+<!--                                <td>{{ buyer.user.email }}</td>-->
+<!--                                <td>{{ buyer.created_date }}</td>-->
+<!--                                <td>-->
+<!--                                    <a href="{%url 'pb-details' pb.ID%}" class="btn btn-outline-info btn-sm"-->
+<!--                                       role="button">View</a>-->
+<!--                                    <a href="{%url 'pb-edit' pb.ID%}" class="btn btn-outline-warning btn-sm"-->
+<!--                                       role="button">Edit</a>-->
+<!--                                    &lt;!&ndash;                                    <a href="{%url 'pb-remove' pb.Strategy%}" style="color: red">Delete</a>&ndash;&gt;-->
+<!--                                    <a href="{%url 'pb-remove' pb.ID%}" class="btn btn-outline-danger btn-sm"-->
+<!--                                       role="button">Delete</a>-->
+
+<!--                                </td>-->
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>No Data Found</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+<!--                </div> &lt;!&ndash; /.table-stats &ndash;&gt;-->
+
+<!--                paginations-->
+<!--        <div class="pagination">-->
+<!--    <span class="step-links">-->
+<!--        {% if physicalblotter.has_previous %}-->
+<!--            <a href="?page=1">&laquo; first</a>-->
+<!--            <a href="?page={{ physicalblotter.previous_page_number }}">previous</a>-->
+<!--        {% endif %}-->
+
+<!--        <span class="current">-->
+<!--            Page {{ physicalblotter.number }} of {{ physicalblotter.paginator.num_pages }}.-->
+<!--        </span>-->
+
+<!--        {% if physicalblotter.has_next %}-->
+<!--            <a href="?page={{ physicalblotter.next_page_number }}">next</a>-->
+<!--            <a href="?page={{ physicalblotter.paginator.num_pages }}">last &raquo;</a>-->
+<!--        {% endif %}-->
+<!--    </span>-->
+<!--        </div>-->
+<!--            </div>-->
+<!--        </div> &lt;!&ndash; /.card &ndash;&gt;-->
+    </div>  <!-- /.col-lg-8 -->
+
+</div>
+    </div>
+<!--                paginations outside scroll bar-->
+        <div class="pagination">
+    <span class="step-links">
+        {% if physicalblotter.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ physicalblotter.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ physicalblotter.number }} of {{ physicalblotter.paginator.num_pages }}.
+        </span>
+
+        {% if physicalblotter.has_next %}
+            <a href="?page={{ physicalblotter.next_page_number }}">next</a>
+            <a href="?page={{ physicalblotter.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+        </div>
+
+
+
+
+
+<!--    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; new try &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
+
+<!--      <div class="col-12">-->
+<!--             <table class="table table-hover table-condensed">-->
+<!--            <tr>-->
+<!--                <th>Date</th>-->
+<!--                <th>Trader</th>-->
+<!--                <th>Counter_Party</th>-->
+<!--                 <th><center>Actions</center></th>-->
+
+
+<!--            </tr>-->
+<!--            {%for pb in physicalblotter %}-->
+<!--            <tr>-->
+<!--                <td>{{ pb.Date }}</td>-->
+<!--                <td>{{ pb.Trader }}</td>-->
+<!--                <td>{{ pb.Counter_Party }}</td>-->
+<!--                <td>-->
+<!--                    <a href="{%url 'pb-details' pb.Strategy%}">View</a>-->
+<!--                    <a href="{%url 'pb-edit' pb.Strategy%}">Edit</a>-->
+<!--                    <a href="{%url 'pb-remove' pb.Strategy%}">Delete</a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            {%endfor%}-->
+<!--        </table>-->
+<!--        </div>-->
+
+
+</body>
+{% endblock content %}

@@ -1,0 +1,425 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+  <script type="text/javascript">
+
+        function EnableDisableVessalName(Delivery_mode) {
+            var selectedValue = Delivery_mode.options[Delivery_mode.selectedIndex].value;
+            var Vessal_name_textbox = document.getElementById("Vessal_name_textbox");
+            var Tank_no = document.getElementById("Tank_no");
+            Vessal_name_textbox.disabled = selectedValue == 2 ? false : true;
+            if (!Vessal_name_textbox.disabled) {
+                Vessal_name_textbox.focus();
+            }
+           Tank_no.disabled = selectedValue == 1 ? false : true;
+           if (!Tank_no.disabled) {
+               Tank_no.focus();
+            }
+
+        }
+
+    </script>
+
+<!--<script type="text/javascript">-->
+
+
+<!--        function comparedate()-->
+<!--        {-->
+<!--        var stardate = document.getElementById("StartDate");-->
+<!--        var enddate = document.getElementById("EndDate");-->
+<!--        if(startdate != enddate)-->
+<!--        {-->
+<!--        result =alert("start date and end date should be same in Pricing methode FIXED");-->
+<!--        document.getElementById("output").innerHTML=result-->
+<!--        }-->
+
+<!--        }-->
+<!--</script>-->
+
+<!--<h5>ADD TRADES</h5>-->
+<div class="container">
+    <form action="" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="row  ">
+<!--            <div class="col-1"></div>-->
+            <div class="col-2"></div>
+
+            <div class="col-4 mt-2 bg-white border-end-0">
+
+                <div class="form-group">
+                    <label for="Date" class="control-label mb-1">Date</label>
+                    {{ form.Date }}
+<!--                    <input type="Date" name="date" id="id_Date" placeholder="eneter Date">{{form.Date}}-->
+                </div>
+
+                  <div class="form-group">
+                    <label for="Counter_Party" class="control-label mb-1">Counter Party</label>
+                    {{ form.Counter_Party }}
+<!--                      <select name="Counter_Party" class="form-control" id="Counter_Party">-->
+<!--                             <option value="" selected="">Select</option>-->
+<!--                          {% for i in form%}-->
+<!--                             <option value="{{i.Counter_Party}}" >{{i.Counter_Party}}</option>-->
+<!--                          {% endfor %}-->
+
+<!--                             <option value="Y">Y</option>-->
+<!--                             <option value="Z">Z</option>-->
+<!--                         </select>-->
+
+                </div>
+
+                   <div class="form-group">
+                    <label for="Strategy" class="control-label mb-1"> Strategy</label>
+<!--                    {{ form.Strategy }}-->
+                       <select name="Strategy" class="form-control" id="Strategy" required="">
+                        <option value="" selected="">Select</option>
+
+                        <option value="1000">1000</option>
+
+                        <option value="1001">1001</option>
+
+                        <option value="1002">1002</option>
+
+                        <option value="1003">1003</option>
+
+                        <option value="1004">1004</option>
+
+                        <option value="1005">1005</option>
+
+                        <option value="1006">1006</option>
+
+                    </select>
+                </div>
+
+
+                  <div class="form-group">
+                    <label for="Product" class="control-label mb-1"> Product/Cargo</label>
+                    {{ form.Product }}
+<!--                      <select name="Product" class="form-control" id="Product">-->
+<!--                          <option value="" selected="">Select</option>-->
+<!--                          <option value="Fuel Oil">Fuel Oil</option>-->
+<!--                          <option value="Naphtha">Naphtha</option>-->
+<!--                          <option value="Gasoline Blend sb">Gasoline Blend sb</option>-->
+<!--                      </select>-->
+                </div>
+
+                <div class="form-group">
+                    <label for="Unit" class="control-label mb-1"> Unit</label>
+                    {{ form.unit }}
+<!--                    <select name="unit" class="form-control" id="unit" required="">-->
+<!--                             <option value="" selected="">Select</option>-->
+<!--                             <option value="MT">MT</option>-->
+<!--                             <option value="BBL">BBL</option>-->
+<!--                             <option value="m³">m³</option>-->
+<!--                         </select>-->
+
+                </div>
+
+                 <div class="form-group">
+                    <label for="kMT" class="control-label mb-1"> kMT</label>
+                    {{ form.kMT }}
+                 </div>
+
+                <div class="form-group">
+                    <label for="Nominated_quantity" class="control-label mb-1"> Nominated Quantity</label>
+                    {{ form.Nominated_quantity }}
+                </div>
+
+                <div class="form-group">
+<!--                    <label for="Pricing_method" class="control-label mb-1"> Pricing Method</label>-->
+<!--                    {{ form.Pricing_method }}-->
+                  <label for="Pricing_method" class="control-label mb-1"> Pricing Method</label>
+                  <select name="Pricing_method" class="form-control" id="Pricing_method" required="">
+                      <option value="" selected="">Select</option>
+
+                      <option value="1">fixed</option>
+
+                      <option value="2">float</option>
+
+                  </select>
+
+                </div>
+
+
+
+               <div class="form-group">
+                    <label for="BL_Date" class="control-label mb-1"> BL Date</label>
+                    {{ form.BL_Date }}
+                </div>
+
+                  <div class="form-group">
+                    <label for="start_date" class="control-label mb-1"> Start Date</label>
+                    {{ form.start_date }}
+<!--                     <label for="start_date" class="control-label mb-1"> Start Date</label>-->
+<!--                     <input type="date" name="start_date" class="form-control" id="start_date" required="">-->
+
+                </div>
+
+                  <div class="form-group">
+                    <label for="holidays" class="control-label mb-1"> Holidays</label>
+                    {{ form.holidays }}
+<!--                      <select name="holidays" class="form-control" id="holidays" required="">-->
+<!--                        <option value="" selected="">Select</option>-->
+<!--                        <option value="singapore_holidays">singapore_holidays</option>-->
+<!--                        <option value="plate_holidays">plate_holidays</option>-->
+<!--                    </select>-->
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="Port" class="control-label mb-1"> Port</label>
+<!--                    {{ form.port }}-->
+                    <select name="port" class="form-control" id="port">
+                         <option value="" selected="">Select</option>
+                        <option value="Port1" >Port1</option>
+                        <option value="Port2">Port2</option>
+
+                    </select>
+                </div>
+
+                     <div class="form-group">
+                         <!--                    <label for="Vessal_name" class="control-label mb-1"> Vessal Name</label>-->
+                         <!--                    {{ form.Vessal_name }}-->
+
+                         <label for="Vessal_name" class="control-label mb-1"> Vessal Name</label>
+                         <input type="text" name="Vessal_name" class="form-control" id="Vessal_name_textbox"
+                                maxlength="120" disabled="disabled">
+
+                     </div>
+
+
+
+
+<!--                <div class="form-group">-->
+<!--                    <label for="Total_no_days" class="control-label mb-1"> Total_no_days</label>-->
+<!--                    {{ form.Total_no_days }}-->
+<!--                </div>-->
+
+<!--                   <div class="form-group">-->
+<!--                    <label for="total_volume" class="control-label mb-1"> total_volume</label>-->
+<!--                    {{ form.total_volume }}-->
+<!--                </div>-->
+
+<!--                   <div class="form-group">-->
+<!--                    <label for="position" class="control-label mb-1"> position</label>-->
+<!--                    {{ form.position }}-->
+<!--                </div>-->
+
+<!--                 <div class="form-group">-->
+<!--                         <label for="Shore_recieved" class="control-label mb-1"> Shore_recieved</label>-->
+<!--                         {{ form.Shore_recieved }}-->
+<!--                     </div>-->
+                 <div class="form-group">
+                    <label for="External_Terminal" class="control-label mb-1"> External Terminal</label>
+                    {{ form.External_Terminal }}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Fright_cost" class="control-label mb-1"> Fright Cost</label>
+                    {{ form.Fright_cost }}
+                </div>
+
+                <div class="form-group">
+                    <label for="Notes" class="control-label mb-1"> Notes</label>
+                    {{ form.Notes }}
+                </div>
+
+
+
+            </div>
+
+<!--            empty space in middle-->
+<!--            <div class="col-1 bg-white mt-2"></div>-->
+<!--            second row-->
+            <div class="col-4 mt-2 bg-white border-start-2">
+
+                <div class="form-group">
+                    <label for="Trader" class="control-label mb-1">Trader</label>
+                    {{ form.Trader }}
+
+<!--                    <select name="Trader" class="form-control" id="Trader" required="">-->
+<!--                        <option value="" selected="">Select</option>-->
+<!--                        {% for i in forms %}-->
+<!--                        <option value="{{i.ID}}">{{i.forms}}</option>-->
+<!--                        {% endfor %}-->
+<!--                    </select>-->
+                </div>
+
+
+                <!--                        <option value="1">Dileel</option>-->
+<!--                        <option value="2">James</option>-->
+<!--                        <option value="3">Joy</option>-->
+<!--                        <option value="4">kevin</option>-->
+
+                <div class="form-group">
+                    <label for="Book" class="control-label mb-1">Book</label>
+                    {{ form.Book }}
+<!--                     <select name="Book" class="form-control" id="Book" required="">-->
+<!--                        <option value="" selected="">Select</option>-->
+<!--                        <option value="Book1">Book1</option>-->
+<!--                        <option value="Book2">Book2</option>-->
+<!--                    </select>-->
+                </div>
+
+                 <div class="form-group">
+                         <label for="Derivative" class="control-label mb-1"> Derivative</label>
+                         {{ form.Derivative }}
+                     </div>
+
+                <div class="form-group">
+                    <label for="Pricing_Contract" class="control-label mb-1"> Pricing Contract</label>
+                    {{ form.Pricing_Contract }}
+<!--                    <select name="Pricing_Contract" class="form-control" id="Pricing_Contract" required="">-->
+<!--                        <option value="" selected="">Select</option>-->
+
+<!--                        <option value="Naphtha FOB Arar">Naphtha FOB Arar</option>-->
+
+<!--                        <option value="ECO-1042/2022">ECO-1042/2022</option>-->
+
+<!--                        <option value="Others">Others</option>-->
+
+<!--                    </select>-->
+                </div>
+                <div class="form-group">
+                    <label for="kbbl" class="control-label mb-1"> kbbl</label>
+                    {{ form.kbbl }}
+                </div>
+
+                   <div class="form-group">
+                    <label for="m3" class="control-label mb-1"> m<sup>3</sup> </label>
+                    {{ form.m3 }}
+                </div>
+                 <div class="form-group">
+                    <label for="Density" class="control-label mb-1"> Density</label>
+                    {{ form.Density }}
+                </div>
+
+                 <div class="form-group">
+                    <label for="Premium_discount" class="control-label mb-1"> Premium Discount</label>
+                    {{ form.Premium_discount }}
+                </div>
+
+
+                 <div class="form-group">
+                    <label for="Pricing_term" class="control-label mb-1"> Pricing Term</label>
+<!--                    {{ form.Pricing_term }}-->
+                     <select name="Pricing_term" class="form-control" id="Pricing_term" required="">
+                         <option value="" selected="">Select</option>
+                         <option value="Tomorrow">Tomorrow</option>
+                         <option value="25 days after">25 days after</option>
+
+                     </select>
+                 </div>
+
+                <div class="form-group">
+                    <label for="end_date" class="control-label mb-1"> End Date</label>
+                    {{ form.end_date }}
+                    <!--                    <label for="end_date" class="control-label mb-1"> End Date</label>-->
+                    <!--                    <input type="date" name="end_date" class="form-control" id="end_date" required="">-->
+                    <!--                    <p id="output"></p>-->
+
+                </div>
+                 <div class="form-group">
+<!--                    <label for="Delivery_mode" class="control-label mb-1"> Delivery Mode</label>-->
+<!--                    {{ form.Delivery_mode }}-->
+
+                   <label for="Delivery_mode" class="control-label mb-1"> Delivery Mode</label>
+
+                         <select name="Delivery_mode" class="form-control" id="Delivery_mode" required="" onchange="EnableDisableVessalName(this)">
+                             <option value="" selected="">Select</option>
+
+                             <option value="1">Tank</option>
+
+                             <option value="2">Vessel</option>
+
+                             <option value="3">PLT</option>
+
+                         </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="Terminal" class="control-label mb-1"> Terminal</label>
+<!--                    {{ form.Terminal }}-->
+                     <select name="Terminal" class="form-control" id="Terminal">
+                        <option value="" selected="">Select</option>
+                        <option value="Terminal1">Terminal1</option>
+                        <option value="Terminal2">Terminal2</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <!--                    <label for="Tank_no" class="control-label mb-1"> Tank No</label>-->
+                    <!--                    {{ form.Tank_no }}-->
+                    <label for="Tank_no" class="control-label mb-1"> Tank No</label>
+                    <select name="Tank_no" class="form-control" id="Tank_no">
+                        <option value="" selected="">Select</option>
+
+                        <option value="Tank1">Tank1</option>
+
+                        <option value="Tank2">Tank2</option>
+
+                        <option value="Tank3">Tank3</option>
+
+                        <option value="Tank4">Tank4</option>
+
+                    </select>
+
+                </div>
+
+                 <div class="form-group">
+                         <label for="Terminal_cost" class="control-label mb-1"> Terminal Cost</label>
+                         {{ form.Terminal_cost }}
+                     </div>
+
+                     <div class="form-group">
+                    <label for="additional_secondary_charge" class="control-label mb-1"> Additional Secondary Charge</label>
+                    {{ form.additional_secondary_charge }}
+                </div>
+
+                  <div class="form-group">
+                    <label for="Status" class="control-label mb-1"> Status</label>
+                    {{ form.Status }}
+                </div>
+
+                  <div class="form-group">
+                         <label for="ID" class="control-label mb-1"> ID</label>
+                         {{ form.ID }}
+                     </div>
+
+                   <div class="form-group">
+                         <label for="Reference_no" class="control-label mb-1"> Reference No</label>
+                         {{ form.Reference_no }}
+                     </div>
+
+
+                   <div class="form-group">
+                         <label for="Supporting_document" class="control-label mb-1"> Supporting Document</label>
+                         {{ form.Supporting_document }}
+                     </div>
+
+            </div>
+<!--              end of second row-->
+
+<!--            third row-->
+<!--            end of third row-->
+<div class="col-2"></div>
+        </div>
+        <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
+        <input type="submit"  class="btn btn-lg btn-info btn-block" value="Save">
+        </div>
+            <div class="col-4"></div>
+        <div class="col-2"></div>
+            </div>
+
+    </form>
+
+</div>
+{% endblock content %}

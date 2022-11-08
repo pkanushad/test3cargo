@@ -1,0 +1,69 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if messages%}
+                {%for msg in messages%}
+                    {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+                     <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong>Holy guacamole!</strong> {{msg}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {%endif%}
+                    {%if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Holy guacamole!</strong> {{msg}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {%endif%}
+                {%endfor%}
+            {%endif%}
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+<!--    <div class="row bg-light">-->
+<!--        <div class="col-4"></div>-->
+<!--        <div class="col-4">-->
+<!--            <form action="" method="post">-->
+<!--                {%csrf_token%}-->
+<!--                {{form.as_p}}-->
+<!--                <input type="submit">-->
+
+<!--            </form>-->
+<!--        </div>-->
+<!--        <div class="col-4"></div>-->
+<!--    </div>-->
+      <div class="row mt-4 ">
+        <div class="col-4"></div>
+        <div class="col-4 bg-light border">
+            <br>
+            <h5>Hi New user,Register here</h5>
+            <form action="" method="post">
+                {%csrf_token%}
+<!--                {{form.as_p}}-->
+                {{ form|crispy }}
+                <input type="submit" class="btn btn-dark" value="Register">
+                  <br>
+            </form>
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+</body>
+</html>
