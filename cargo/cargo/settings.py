@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,9 +28,9 @@ SECRET_KEY = 'django-insecure-j-qoehhf*!e9mt-3_c8sl+wy*zd%8l6*)lp-e#^uq=nx&w==$0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','testcargo.herokuapp.com']
+# ALLOWED_HOSTS = ['127.0.0.1','testcargo.herokuapp.com']
 # ALLOWED_HOSTS = ['127.0.0.1','acerscargo.herokuapp.com']
-
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','testdileena.herokuapp.com']
 
 # Application definition
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms',
      'ajax_datatable',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +90,9 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -129,6 +134,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# #location where django collect all static files
+# STATIC_ROOT = os.path.join(BASE_DIR,'static')
+# # location where you will store your static files
+# STATICFILES_DIRS = [os.path.join(BASE_DIR,'project_name/static')
+# ]
+
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
