@@ -26,11 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j-qoehhf*!e9mt-3_c8sl+wy*zd%8l6*)lp-e#^uq=nx&w==$0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-# ALLOWED_HOSTS = ['127.0.0.1','testcargo.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','testcargo.herokuapp.com']
 # ALLOWED_HOSTS = ['127.0.0.1','acerscargo.herokuapp.com']
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','testdileena.herokuapp.com']
+# ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','testdileena.herokuapp.com']
 
 # Application definition
 
@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms',
      'ajax_datatable',
-    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
